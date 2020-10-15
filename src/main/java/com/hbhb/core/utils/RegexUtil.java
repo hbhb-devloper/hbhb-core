@@ -14,7 +14,7 @@ public class RegexUtil {
         return Pattern.matches(YEAR_REGEX, year);
     }
 
-    public static boolean isNotStartWith(String target, String regex) {
-        return target.matches("^(?!" + regex + ").*$");
+    public static boolean isNotStartWith(String origin, String target) {
+        return origin.matches("^(?!" + target + ").*$");
     }
 }
