@@ -23,7 +23,7 @@ public enum ResultCode {
     UNSUPPORTED_MEDIA_TYPE("10415", "不支持该媒体类型"),
     TRAFFIC_LIMITING("10429", "网络拥挤，等会再来吧"),
 
-    EXCEPTION("10500", "服务器开小差，请稍后再试"),
+    EXCEPTION("99999", "服务器开小差，请稍后再试"),
     ;
 
     private final String code;
