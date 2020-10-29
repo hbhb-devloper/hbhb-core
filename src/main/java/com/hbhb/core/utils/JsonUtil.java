@@ -4,6 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author xiaokang
  * @since 2020-09-12
@@ -44,4 +49,33 @@ public class JsonUtil {
         }
         return null;
     }
+
+    /**
+     * （从list中）按key获取value
+     */
+    public static List<String> findByKeyFromArray(String json, String key) {
+        if (json == null) {
+            return null;
+        }
+        List<String> result = new ArrayList<>();
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode root = objectMapper.readTree(json);
+            Iterator<JsonNode> elements = root.elements();
+            while (elements.hasNext()) {
+                JsonNode node = elements.next();
+                Iterator<Map.Entry<String, JsonNode>> iterator = node.fields();
+                while (iterator.hasNext()) {
+                    Map.Entry<String, JsonNode> subNode = iterator.next();
+                    if (key.equals(subNode.getKey())) {
+                        result.add(subNode.getValue().toString());
+                    }
+                }
+            }
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 }
