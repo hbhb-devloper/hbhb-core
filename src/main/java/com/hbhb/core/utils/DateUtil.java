@@ -63,6 +63,32 @@ public class DateUtil {
     }
 
     /**
+     * 计算两个日期相隔多少月
+     *
+     * @param lowDate
+     * @param bigDate
+     * @return
+     * @throws ParseException
+     */
+    public static int monthBetween(String lowDate, String bigDate) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat(FORMAT_PATTERN_yyyyMMdd);
+        Calendar bef = Calendar.getInstance();
+        Calendar aft = Calendar.getInstance();
+        bef.setTime(sdf.parse(lowDate));
+        aft.setTime(sdf.parse(bigDate));
+        int surplus = aft.get(Calendar.DATE) - bef.get(Calendar.DATE);
+        int result = aft.get(Calendar.MONTH) - bef.get(Calendar.MONTH);
+        int month = (aft.get(Calendar.YEAR) - bef.get(Calendar.YEAR)) * 12;
+        surplus = surplus <= 0 ? 1 : 0;
+        Integer betweenMonth = (Math.abs(month + result) + surplus);
+        return Integer.parseInt(String.valueOf(betweenMonth));
+    }
+
+    public static String dateToStringYmd(Date date) {
+        return dateToString(date, FORMAT_PATTERN_yyyyMMdd);
+    }
+
+    /**
      * 计算两个日期相隔多少年
      *
      * @param lowDate
