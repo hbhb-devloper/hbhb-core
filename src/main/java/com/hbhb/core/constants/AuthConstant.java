@@ -16,7 +16,7 @@ public enum AuthConstant {
     /**
      * 验证码有效期（分钟）
      */
-    CAPTCHA_EXPIRATION("2"),
+    CAPTCHA_EXPIRATION("1"),
     /**
      * JWT存储权限前缀
      */

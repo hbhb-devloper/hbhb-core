@@ -24,12 +24,12 @@ public class ApiResult<T> {
         return result(ResultCode.SUCCESS.code(), ResultCode.SUCCESS.msg(), data);
     }
 
-    public static <T> ApiResult<T> error(String code, String message) {
-        return result(code, message, null);
+    public static ApiResult error(String code, String message) {
+        return result(code, message, ResultCode.FAILED.msg());
     }
 
     public static ApiResult error(ResultCode resultCode) {
-        return result(resultCode.code(), resultCode.msg(), null);
+        return result(resultCode.code(), resultCode.msg(), ResultCode.FAILED.msg());
     }
 
     private static <T> ApiResult<T> result(String code, String message, T data) {

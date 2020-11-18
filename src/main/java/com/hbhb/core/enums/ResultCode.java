@@ -24,6 +24,8 @@ public enum ResultCode {
     TRAFFIC_LIMITING("10429", "网络拥挤，等会再来吧"),
 
     EXCEPTION("99999", "服务器开小差，请稍后再试"),
+
+    FAILED("FAILED", "FAILED"),
     ;
 
     private final String code;
