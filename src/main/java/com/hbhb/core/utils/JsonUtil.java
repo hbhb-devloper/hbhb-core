@@ -3,6 +3,9 @@ package com.hbhb.core.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectReader;
+
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,6 +17,21 @@ import java.util.Map;
  * @since 2020-09-12
  */
 public class JsonUtil {
+
+    /**
+     * 判断对象是否为合法json字符串
+     */
+    public static boolean isJson(Object object) {
+        if (object == null || !String.class.isAssignableFrom(object.getClass())) {
+            return false;
+        }
+        String string = (String) object;
+        if (string.isEmpty()) {
+            return false;
+        }
+        char head = string.charAt(0);
+        return head == '[' || head == '{';
+    }
 
     /**
      * 对象转json字符串
@@ -29,6 +47,23 @@ public class JsonUtil {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * json字符串转对象
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T convert2Obj(String json, Class<T> clazz) {
+        if (StringUtils.isEmpty(json) || clazz == null) {
+            return null;
+        }
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return clazz.equals(String.class) ? (T) json : objectMapper.readValue(json, clazz);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
