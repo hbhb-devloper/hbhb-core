@@ -25,7 +25,7 @@ public enum ResultCode {
 
     EXCEPTION("99999", "服务器开小差，请稍后再试"),
 
-    FAILED("FAILED", "FAILED"),
+    FAILED("FFFFFF", "empty data here"),
     ;
 
     private final String code;
