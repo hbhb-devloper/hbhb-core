@@ -113,4 +113,19 @@ public class JsonUtil {
         return result;
     }
 
+    /**
+     * 优雅输出json
+     */
+    public static String prettyJson(String json) {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            Object object = mapper.readValue(json, Object.class);
+            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+
 }
