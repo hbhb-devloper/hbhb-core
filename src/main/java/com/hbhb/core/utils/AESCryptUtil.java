@@ -83,7 +83,6 @@ public class AESCryptUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(encrypt("123456"));
-        System.out.println(decrypt("YTbFKON/FlYTuYkbGnxo4kZvEDll1ZcvKKXl0H5cCzU="));
+        System.out.println(decrypt("F44LWCdqyd4XN09T4pbKLA=="));
     }
 }
