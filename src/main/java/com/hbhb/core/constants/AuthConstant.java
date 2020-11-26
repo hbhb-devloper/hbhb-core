@@ -8,7 +8,7 @@ public enum AuthConstant {
     /**
      * 超管标志
      */
-    SUPER_ADMIN("admin"),
+    SUPER_ADMIN("super_admin"),
     /**
      * 验证码 key 前缀
      */
