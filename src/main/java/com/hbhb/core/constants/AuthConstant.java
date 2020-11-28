@@ -10,6 +10,10 @@ public enum AuthConstant {
      */
     SUPER_ADMIN("super_admin"),
     /**
+     * 管理员标志
+     */
+    ADMIN("admin"),
+    /**
      * 完全权限标志
      */
     ALL_PERMISSION("*:*:*"),
