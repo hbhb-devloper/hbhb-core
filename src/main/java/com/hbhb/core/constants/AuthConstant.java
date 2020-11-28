@@ -10,6 +10,10 @@ public enum AuthConstant {
      */
     SUPER_ADMIN("super_admin"),
     /**
+     * 完全权限标志
+     */
+    ALL_PERMISSION("*:*:*"),
+    /**
      * 验证码 key 前缀
      */
     CAPTCHA_CODE_KEY("captcha_codes:"),
