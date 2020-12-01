@@ -18,6 +18,18 @@ public enum AuthConstant {
      */
     ALL_PERMISSION("*:*:*"),
     /**
+     * 前端Layout组件标识
+     */
+    LAYOUT("Layout"),
+    /**
+     * 是否菜单外链-是
+     */
+    YES_FRAME("1"),
+    /**
+     * 是否菜单外链-否
+     */
+    NO_FRAME("0"),
+    /**
      * 验证码 key 前缀
      */
     CAPTCHA_CODE_KEY("captcha_codes:"),
