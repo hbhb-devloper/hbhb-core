@@ -42,6 +42,23 @@ public class ExcelUtil {
         }
     }
 
+    public static void export2WebWithHead(HttpServletResponse response,
+                                          String fileName,
+                                          String sheetName,
+                                          List<List<String>> head,
+                                          List data) {
+        fileName += ExcelTypeEnum.XLSX.getValue();
+        try {
+            response.setContentType("application/vnd.ms-excel");
+            response.setCharacterEncoding("utf-8");
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName);
+            EasyExcel.write(response.getOutputStream()).head(head).sheet(sheetName).doWrite(data);
+        } catch (Exception e) {
+            log.error("导出Excel异常{}", e.getMessage());
+            throw new RuntimeException("导出Excel失败，请联系网站管理员！");
+        }
+    }
+
     public static void export2WebWithTemplate(HttpServletResponse response,
                                               String fileName,
                                               String sheetName,
