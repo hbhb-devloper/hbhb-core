@@ -1,21 +1,17 @@
 package com.hbhb.core.utils;
 
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 
 /**
  * @author xiaokang
  */
-public class MoneyUtil {
+public class NumberUtil {
 
     private static final String FORMAT_PATTERN = "###,##0.00";
 
-    public static String format(BigDecimal money) {
+    public static String format(double number) {
         DecimalFormat df = new DecimalFormat(FORMAT_PATTERN);
-        if (money == null) {
-            money = BigDecimal.ZERO;
-        }
-        return df.format(money);
+        return df.format(number);
     }
 
 }
