@@ -12,6 +12,10 @@ public class MoneyUtil {
 
     public static BigDecimal format(BigDecimal money) {
         DecimalFormat df = new DecimalFormat(FORMAT_PATTERN);
+        if (money == null) {
+            money = BigDecimal.ZERO;
+        }
         return new BigDecimal(df.format(money));
     }
+
 }
