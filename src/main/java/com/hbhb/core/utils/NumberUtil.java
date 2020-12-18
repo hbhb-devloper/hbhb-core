@@ -10,8 +10,8 @@ public class NumberUtil {
 
     private static final String FORMAT_PATTERN = "###,##0.00";
 
-    public static String formatMoney(BigDecimal money) {
+    public static BigDecimal formatMoney(BigDecimal money) {
         DecimalFormat df = new DecimalFormat(FORMAT_PATTERN);
-        return df.format(money);
+        return new BigDecimal(df.format(money));
     }
 }
