@@ -7,7 +7,7 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
 /**
- * @author tpson
+ * @author xiaokang
  */
 public class UriUtil {
 
