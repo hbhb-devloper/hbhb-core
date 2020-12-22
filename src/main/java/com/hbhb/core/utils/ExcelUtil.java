@@ -1,7 +1,9 @@
 package com.hbhb.core.utils;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.support.ExcelTypeEnum;
+import com.alibaba.excel.write.metadata.WriteSheet;
 
 import org.springframework.util.StringUtils;
 
@@ -23,6 +25,9 @@ import lombok.extern.slf4j.Slf4j;
 @SuppressWarnings(value = {"rawtypes"})
 public class ExcelUtil {
 
+    /**
+     * 简单导出
+     */
     public static void export2Web(HttpServletResponse response,
                                   String fileName,
                                   String sheetName,
@@ -42,6 +47,9 @@ public class ExcelUtil {
         }
     }
 
+    /**
+     * 动态表头导出
+     */
     public static void export2WebWithHead(HttpServletResponse response,
                                           String fileName,
                                           String sheetName,
@@ -59,6 +67,9 @@ public class ExcelUtil {
         }
     }
 
+    /**
+     * 通过模板导出
+     */
     public static void export2WebWithTemplate(HttpServletResponse response,
                                               String fileName,
                                               String sheetName,
@@ -76,6 +87,37 @@ public class ExcelUtil {
         } catch (Exception e) {
             log.error("导出Excel异常{}", e.getMessage());
             throw new RuntimeException("导出Excel失败，请联系网站管理员！");
+        }
+    }
+
+    /**
+     * 多sheet导出
+     */
+    public static void exportManySheetWeb(HttpServletResponse response,
+                                          String fileName,
+                                          List<String> sheetNameList,
+                                          Class clazz,
+                                          List<List> dataList) {
+        fileName += ExcelTypeEnum.XLSX.getValue();
+        ExcelWriter excelWriter = null;
+        try {
+            response.setContentType("application/vnd.ms-excel");
+            response.setCharacterEncoding("utf-8");
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName);
+            excelWriter = EasyExcel.write(response.getOutputStream(), clazz).build();
+            for (int i = 0; i < sheetNameList.size(); i++) {
+                WriteSheet writeSheet = EasyExcel.writerSheet(i, sheetNameList.get(i)).build();
+                excelWriter.write(dataList.get(i), writeSheet);
+            }
+        } catch (Exception e) {
+            log.error("导出Excel异常{}", e.getMessage());
+            throw new RuntimeException("导出Excel失败，请联系网站管理员！");
+        }
+        finally {
+            // 千万别忘记finish 会帮忙关闭流
+            if (excelWriter != null) {
+                excelWriter.finish();
+            }
         }
     }
 
