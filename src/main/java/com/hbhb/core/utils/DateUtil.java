@@ -221,6 +221,22 @@ public class DateUtil {
         return null;
     }
 
+    /**
+     * 获取上一个月
+     * @return
+     */
+    public static String getLastMonth() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM");
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance();
+        // 设置为当前时间
+        calendar.setTime(date);
+        // 设置为上一个月
+        calendar.set(Calendar.MONTH, calendar.get(Calendar.MONTH) - 1);
+        date = calendar.getTime();
+        return format.format(date);
+    }
+
 
     public static Date string2DateYMD(String str) {
         //str =  " 2016-03-10" 格式
