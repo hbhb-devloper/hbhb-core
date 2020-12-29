@@ -9,6 +9,10 @@ import java.util.regex.Pattern;
 public class RegexUtil {
 
     public static final String YEAR_REGEX = "[0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]|[0-9][1-9][0-9]{2}|[1-9][0-9]{3}";
+    /**
+     * 至少1个数字，至少1个字母，不能有空格，长度介于6到16之间
+     */
+    public static final String PASSWORD_REGEX = "^(?=.*\\d)(?=.*[A-Za-z])(?!.* ).{6,16}$";
 
     public static boolean isYear(String year) {
         return Pattern.matches(YEAR_REGEX, year);
@@ -16,5 +20,9 @@ public class RegexUtil {
 
     public static boolean isNotStartWith(String origin, String target) {
         return origin.matches("^(?!" + target + ").*$");
+    }
+
+    public static boolean checkPwd(String password) {
+        return Pattern.matches(PASSWORD_REGEX, password);
     }
 }

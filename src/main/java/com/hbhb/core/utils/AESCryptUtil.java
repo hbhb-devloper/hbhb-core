@@ -1,9 +1,10 @@
 package com.hbhb.core.utils;
 
+import java.util.Base64;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;
 
 /**
  * @author xiaokang
@@ -25,7 +26,8 @@ public class AESCryptUtil {
     /**
      * 算法/模式/补码方式
      */
-    private static final String ALGORITHM_PROVIDER = "AES/CBC/NoPadding";
+    private static final String ALGORITHM_PROVIDER = "AES/CBC/PKCS5Padding";
+//    private static final String ALGORITHM_PROVIDER = "AES/CBC/NoPadding";
 
     public static String encrypt(String data) {
         return encrypt(data, KEY, IV);
