@@ -26,7 +26,7 @@ public class AESCryptUtil {
     /**
      * 算法/模式/补码方式
      */
-    private static final String ALGORITHM_PROVIDER = "AES/CBC/NoPadding";
+    private static final String ALGORITHM_PROVIDER = "AES/CBC/PKCS5Padding";
 
     public static String encrypt(String data) {
         return encrypt(data, KEY, IV);
