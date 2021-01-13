@@ -121,6 +121,30 @@ public class ExcelUtil {
         }
     }
 
+    /**
+     * 通过模板导出,可插入
+     */
+    public static void export2TemplateWithDate(HttpServletResponse response,
+                                       Class clazz,
+                                       String fileName,
+                                       String sheetName,
+                                       String templateFileName,
+                                       List date) {
+        fileName += ExcelTypeEnum.XLSX.getValue();
+        try {
+            response.setContentType("application/vnd.ms-excel");
+            response.setCharacterEncoding("utf-8");
+            response.setHeader("Content-disposition", "attachment;filename=" + fileName);
+            EasyExcel.write(response.getOutputStream(), clazz)
+                    .withTemplate(templateFileName)
+                    .sheet(sheetName)
+                    .doWrite(date);
+        } catch (Exception e) {
+            log.error("导出Excel异常{}", e.getMessage());
+            throw new RuntimeException("导出Excel失败，请联系网站管理员！");
+        }
+    }
+
     public static String encodingFileName(HttpServletRequest request, String fileName) {
         final String userAgent = request.getHeader("user-agent");
         if (StringUtils.isEmpty(userAgent)) {
