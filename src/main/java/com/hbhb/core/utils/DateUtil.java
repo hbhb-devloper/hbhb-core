@@ -134,6 +134,20 @@ public class DateUtil {
         return stime.getTime() > etime.getTime();
     }
 
+    /**
+     * 盘都某个时间是否在开始和结束时间的区间内如果在则未过期，不再则过期
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @param time 需要比较的时间
+     * @return true 未过期 false 过期
+     */
+    public static boolean isExpired(String startTime, String endTime, String time) {
+        Date stime = stringToDate(startTime);
+        Date etime = stringToDate(endTime);
+        Date date = stringToDate(time);
+        return date.getTime() > stime.getTime() && date.getTime() < etime.getTime();
+    }
+
     public static boolean isExpiredYMD(String startTime, String endTime) {
         Date stime = string2DateYMD(startTime);
         Date etime = string2DateYMD(endTime);
@@ -223,6 +237,7 @@ public class DateUtil {
 
     /**
      * 获取上一个月
+     *
      * @return
      */
     public static String getLastMonth() {
